@@ -1,6 +1,6 @@
 import pandas as pd
 
-data = pd.read_csv('../../datasets/glassdoor_jobs.csv', na_values='-1', index_col=0)
+data = pd.read_csv('../datasets/glassdoor_jobs.csv', na_values='-1', index_col=0)
 data.info()
 # salary parsing
 # company name text only
