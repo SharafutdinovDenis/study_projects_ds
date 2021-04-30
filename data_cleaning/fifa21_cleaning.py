@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import date
 import numpy as np
 
-data = pd.read_csv('datasets/fifa21.csv', index_col='ID')
+data = pd.read_csv('../datasets/fifa21.csv', index_col='ID')
 data.info()
 
 # Remove new line from 'Clubs'
@@ -75,4 +75,4 @@ data['Loyalty'] = ((loyalty >= 10) & data['Loan Date End'].isnull()).apply(lambd
 
 # Drop redundant columns(in my opinion) and write df to csv
 data_cleaned = data.drop(columns=['Name', 'photoUrl', 'playerUrl', 'Contract'])
-data_cleaned.to_csv('datasets/fifa21_cleaned.csv')
+data_cleaned.to_csv('../datasets/fifa21_cleaned.csv')
