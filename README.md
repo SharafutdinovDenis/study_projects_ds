@@ -1,5 +1,5 @@
 # Study Data Scince Projects
-Here's mini-projects for representation my skills and knowledges in different realms of Data Science:
+Here's a few mini-projects for representation my skills and knowledges in different realms of Data Science:
 - Data Cleaning
 - Data Exploring
 - ML
