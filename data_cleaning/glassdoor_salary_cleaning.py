@@ -105,6 +105,8 @@ print(data['seniority'].value_counts())
 # Add columns 'desc_length'
 data['desc_length'] = data['Job Description'].apply(lambda x: len(x))
 
+# Count competitors of each company
+data['num_comp'] = data['Competitors'].apply(lambda x: len(x.split(',')) if x!='-1' else 0)
 
 # fill nan
 # print(data.isna().sum())
