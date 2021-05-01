@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import date
 
 data = pd.read_csv('../datasets/glassdoor_jobs.csv', index_col=0)
 data.info()
@@ -22,10 +23,27 @@ data['min_salary'] = range_salary.apply(lambda x: int(x.split('-')[0]))
 data['max_salary'] = range_salary.apply(lambda x: int(x.split('-')[-1]))
 data['avg_salary'] = (data['max_salary'] - data['min_salary'] / 2)
 
-# COMPLETE README for main
-# company name text only
-# state field
-# age company
+# Remove from 'Company Name' number of rating
+data['Company Name'] = data['Company Name'].apply(lambda x: x.split('\n')[0])
+
+# Add columns 'job_state' and 'headquarters_state'
+data['jobs_state'] = data['Location'].apply(lambda x: x.split(',')[-1].strip())
+print(data['jobs_state'].unique())
+
+data['headquarters_state'] = data['Headquarters'].apply(lambda x: x.split(',')[-1].strip())
+print(data['headquarters_state'].value_counts())
+
+# Add column 'headquarters_abroad' if headquarters locate not in US
+data['headquarters_abroad'] = data['headquarters_state'].apply(lambda x: 1 if len(x) > 2 else 0)
+print(data['headquarters_abroad'].value_counts())
+
+# Add columns 'same_location' if Location and Headquarters match 
+data['same_location'] = data.apply(lambda x: 1 if x['Location'] == x['Headquarters'] else 0, axis = 1)
+
+# Add column 'age' for companies
+current_year = date.today().year
+data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
+
 # parsing of job description
 # fill nan
 # print(data.isna().sum())
