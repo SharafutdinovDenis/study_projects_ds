@@ -38,10 +38,12 @@ data['headquarters_abroad'] = data['headquarters_state'].apply(lambda x: 1 if le
 print(data['headquarters_abroad'].value_counts())
 
 # Add columns 'same_location' if Location and Headquarters match 
+data['same_location'] = data.apply(lambda x: 1 if x['Location'] == x['Headquarters'] else 0, axis = 1)
 
 # Add column 'age' for companies
 current_year = date.today().year
 data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
+
 # parsing of job description
 # fill nan
 # print(data.isna().sum())
