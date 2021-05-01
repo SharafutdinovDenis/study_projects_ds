@@ -25,8 +25,12 @@ data['avg_salary'] = (data['max_salary'] - data['min_salary'] / 2)
 
 # Remove from 'Company Name' number of rating
 data['Company Name'] = data['Company Name'].apply(lambda x: x.split('\n')[0])
-# state field
-# Add column 'Age company'
+# Add columns 'job_state' and 'headquarters_state'
+data['jobs_state'] = data['Location'].apply(lambda x: x.split(',')[-1])
+print(data['jobs_state'].unique()
+# Add columns 'same_location' if Location and Headquarters match 
+
+# Add column 'age' for companies
 current_year = date.today().year
 data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
 # parsing of job description
