@@ -31,7 +31,12 @@ data['jobs_state'] = data['Location'].apply(lambda x: x.split(',')[-1].strip())
 print(data['jobs_state'].unique())
 
 data['headquarters_state'] = data['Headquarters'].apply(lambda x: x.split(',')[-1].strip())
-print(data['headquarters_state'].unique())
+print(data['headquarters_state'].value_counts())
+
+# Add column 'headquarters_abroad' if headquarters locate not in US
+data['headquarters_abroad'] = data['headquarters_state'].apply(lambda x: 1 if len(x) > 2 else 0)
+print(data['headquarters_abroad'].value_counts())
+
 # Add columns 'same_location' if Location and Headquarters match 
 
 # Add column 'age' for companies
