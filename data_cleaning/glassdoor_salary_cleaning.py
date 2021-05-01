@@ -81,5 +81,9 @@ print(data['tableau'].value_counts())
 #excel
 data['excel'] = data['Job Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
 print(data['excel'].value_counts())
+
+# Add column 'simple_title' for classificating jobs
+data['simple_title'] = data['Job Title'].apply(title_simplifier)
+print(data['simple_title'].value_counts())
 # fill nan
 # print(data.isna().sum())
