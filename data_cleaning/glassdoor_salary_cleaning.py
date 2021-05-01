@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import date
 
 data = pd.read_csv('../datasets/glassdoor_jobs.csv', index_col=0)
 data.info()
@@ -22,10 +23,12 @@ data['min_salary'] = range_salary.apply(lambda x: int(x.split('-')[0]))
 data['max_salary'] = range_salary.apply(lambda x: int(x.split('-')[-1]))
 data['avg_salary'] = (data['max_salary'] - data['min_salary'] / 2)
 
-# COMPLETE README for main
-# company name text only
+# Remove from 'Company Name' number of rating
+data['Company Name'] = data['Company Name'].apply(lambda x: x.split('\n')[0])
 # state field
-# age company
+# Add column 'Age company'
+current_year = date.today().year
+data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
 # parsing of job description
 # fill nan
 # print(data.isna().sum())
