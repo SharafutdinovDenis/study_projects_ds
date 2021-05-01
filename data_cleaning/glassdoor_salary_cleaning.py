@@ -4,7 +4,6 @@ from datetime import date
 data = pd.read_csv('../datasets/glassdoor_jobs.csv', index_col=0)
 data.info()
 
-# Salary Parsing
 def get_salary(sal):
     cl_sal = sal.split('(')[0]
     cl_sal = cl_sal.split(':')[-1]
@@ -12,6 +11,23 @@ def get_salary(sal):
     cl_sal = cl_sal.lower().replace('$', '').replace('k', '')
     return cl_sal
 
+def title_simplifier(title):
+    if 'data scientist' in title.lower():
+        return 'data scientist'
+    elif 'data engineer' in title.lower():
+        return 'data engineer'
+    elif 'analyst' in title.lower():
+        return 'analyst'
+    elif 'machine learning' in title.lower():
+        return 'mle'
+    elif 'manager' in title.lower():
+        return 'manager'
+    elif 'director' in title.lower():
+        return 'director'
+    else:
+        return 'na'    
+    
+# Salary Parsing
 data['hourly'] = data['Salary Estimate'].apply(lambda x: 1 if 'per hour' in x.lower() else 0)
 data['employer_provided'] = data['Salary Estimate'].apply(lambda x: 1 if 'employer provided' in x.lower() else 0)
 
