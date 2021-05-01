@@ -22,6 +22,7 @@ data['min_salary'] = range_salary.apply(lambda x: int(x.split('-')[0]))
 data['max_salary'] = range_salary.apply(lambda x: int(x.split('-')[-1]))
 data['avg_salary'] = (data['max_salary'] - data['min_salary'] / 2)
 
+# COMPLETE README for main
 # company name text only
 # state field
 # age company
