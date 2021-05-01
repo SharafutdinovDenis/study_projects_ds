@@ -4,7 +4,6 @@ from datetime import date
 data = pd.read_csv('../datasets/glassdoor_jobs.csv', index_col=0)
 data.info()
 
-# Salary Parsing
 def get_salary(sal):
     cl_sal = sal.split('(')[0]
     cl_sal = cl_sal.split(':')[-1]
@@ -12,6 +11,33 @@ def get_salary(sal):
     cl_sal = cl_sal.lower().replace('$', '').replace('k', '')
     return cl_sal
 
+def title_simplifier(title):
+    if 'data scientist' in title.lower():
+        return 'data scientist'
+    elif 'data engineer' in title.lower():
+        return 'data engineer'
+    elif 'analyst' in title.lower():
+        return 'analyst'
+    elif 'machine learning' in title.lower():
+        return 'mle'
+    elif 'manager' in title.lower():
+        return 'manager'
+    elif 'director' in title.lower():
+        return 'director'
+    else:
+        return 'na' 
+    
+def seniority(title):
+    if 'sr' in title.lower() or 'senior' in title.lower() or 'sr.' in title.lower() or 'lead' in title.lower() or 'principal' in title.lower():
+            return 'senior'
+    elif 'middle' in title.lower():
+        return 'middle'
+    elif 'jr' in title.lower() or 'jr.' in title.lower() or 'junior' in title.lower():
+        return 'jr'
+    else:
+        return 'na'
+    
+# Salary Parsing
 data['hourly'] = data['Salary Estimate'].apply(lambda x: 1 if 'per hour' in x.lower() else 0)
 data['employer_provided'] = data['Salary Estimate'].apply(lambda x: 1 if 'employer provided' in x.lower() else 0)
 
@@ -44,6 +70,30 @@ data['same_location'] = data.apply(lambda x: 1 if x['Location'] == x['Headquarte
 current_year = date.today().year
 data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
 
-# parsing of job description
+# Parse 'Job Desctiption' to popular tools
+
+#python
+data['python'] = data['Job Description'].apply(lambda x: 1 if 'python' in x.lower() else 0)
+print(data['python'].value_counts())
+ 
+#r studio 
+data['R'] = data['Job Description'].apply(lambda x: 1 if 'r studio' in x.lower() or 'r-studio' in x.lower() else 0)
+print(data['R'].value_counts())
+
+#spark 
+data['spark'] = data['Job Description'].apply(lambda x: 1 if 'spark' in x.lower() else 0)
+print(data['spark'].value_counts())
+
+#tableau 
+data['tableau'] = data['Job Description'].apply(lambda x: 1 if 'tableau' in x.lower() else 0)
+print(data['tableau'].value_counts())
+
+#excel
+data['excel'] = data['Job Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
+print(data['excel'].value_counts())
+
+# Add column 'simple_title' for classificating jobs
+data['simple_title'] = data['Job Title'].apply(title_simplifier)
+print(data['simple_title'].value_counts())
 # fill nan
 # print(data.isna().sum())
