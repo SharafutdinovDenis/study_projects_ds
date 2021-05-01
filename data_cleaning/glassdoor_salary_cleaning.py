@@ -25,7 +25,17 @@ def title_simplifier(title):
     elif 'director' in title.lower():
         return 'director'
     else:
-        return 'na'    
+        return 'na' 
+    
+def seniority(title):
+    if 'sr' in title.lower() or 'senior' in title.lower() or 'sr.' in title.lower() or 'lead' in title.lower() or 'principal' in title.lower():
+            return 'senior'
+    elif 'middle' in title.lower():
+        return 'middle'
+    elif 'jr' in title.lower() or 'jr.' in title.lower() or 'junior' in title.lower():
+        return 'jr'
+    else:
+        return 'na'
     
 # Salary Parsing
 data['hourly'] = data['Salary Estimate'].apply(lambda x: 1 if 'per hour' in x.lower() else 0)
