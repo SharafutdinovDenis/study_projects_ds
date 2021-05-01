@@ -27,7 +27,7 @@ data['avg_salary'] = (data['max_salary'] - data['min_salary'] / 2)
 data['Company Name'] = data['Company Name'].apply(lambda x: x.split('\n')[0])
 # Add columns 'job_state' and 'headquarters_state'
 data['jobs_state'] = data['Location'].apply(lambda x: x.split(',')[-1])
-print(data['jobs_state'].unique()
+print(data['jobs_state'].unique())
 # Add columns 'same_location' if Location and Headquarters match 
 
 # Add column 'age' for companies
