@@ -44,6 +44,26 @@ data['same_location'] = data.apply(lambda x: 1 if x['Location'] == x['Headquarte
 current_year = date.today().year
 data['age'] = data['Founded'].apply(lambda x: current_year - x if x>0 else x)
 
-# parsing of job description
+# Parse 'Job Desctiption' to popular tools
+
+#python
+data['python'] = data['Job Description'].apply(lambda x: 1 if 'python' in x.lower() else 0)
+print(data['python'].value_counts())
+ 
+#r studio 
+data['R'] = data['Job Description'].apply(lambda x: 1 if 'r studio' in x.lower() or 'r-studio' in x.lower() else 0)
+print(data['R'].value_counts())
+
+#spark 
+data['spark'] = data['Job Description'].apply(lambda x: 1 if 'spark' in x.lower() else 0)
+print(data['spark'].value_counts())
+
+#tableau 
+data['tableau'] = data['Job Description'].apply(lambda x: 1 if 'tableau' in x.lower() else 0)
+print(data['tableau'].value_counts())
+
+#excel
+data['excel'] = data['Job Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
+print(data['excel'].value_counts())
 # fill nan
 # print(data.isna().sum())
