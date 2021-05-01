@@ -27,13 +27,15 @@ def title_simplifier(title):
     else:
         return 'na' 
     
-def seniority(title):
-    if 'sr' in title.lower() or 'senior' in title.lower() or 'sr.' in title.lower() or 'lead' in title.lower() or 'principal' in title.lower():
+def get_seniority(title):
+    if 'sr' in title.lower() or 'senior' in title.lower() or 'lead' in title.lower() or 'principal' in title.lower():
             return 'senior'
-    elif 'middle' in title.lower():
+    elif 'middle' in title.lower() or 'mid' in title.lower():
         return 'middle'
-    elif 'jr' in title.lower() or 'jr.' in title.lower() or 'junior' in title.lower():
+    elif 'jr' in title.lower() or 'junior' in title.lower():
         return 'jr'
+    elif 'intern' in title.lower():
+        return 'intern'
     else:
         return 'na'
     
@@ -95,5 +97,14 @@ print(data['excel'].value_counts())
 # Add column 'simple_title' for classificating jobs
 data['simple_title'] = data['Job Title'].apply(title_simplifier)
 print(data['simple_title'].value_counts())
+
+# Add column 'seniority'
+data['seniority'] = data['Job Title'].apply(get_seniority)
+print(data['seniority'].value_counts())
+
+# Add columns 'desc_length'
+data['desc_length'] = data['Job Description'].apply(lambda x: len(x))
+
+
 # fill nan
 # print(data.isna().sum())
