@@ -1,5 +1,5 @@
 # Departaments_employee
-![intro](structure_of_db.jpg)
+![intro](structure_of_db.jpg)<br>
 В таблице DEPARTMENT содержаться все идентификаторы отделов некой организации.
 В таблице EMPLOYEE содержаться идентификаторы сотрудников, их принадлежность к отделам, их руководители и зарплата.
 
