@@ -1,4 +1,4 @@
-# Study Data Scince Projects
+# Study Data Science Projects
 Here's a few mini-projects for representation my skills and knowledges in different realms of Data Science:
 - Data Cleaning
 - Data Exploring
