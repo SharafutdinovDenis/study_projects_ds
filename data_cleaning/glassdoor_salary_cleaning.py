@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import date
 
-data = pd.read_csv('../datasets/glassdoor_jobs.csv', index_col=0)
+data = pd.read_csv('../datasets/glassdoor_jobs.csv')
 data.info()
 
 def get_salary(sal):
@@ -121,4 +121,6 @@ to_annual_const = 37.5*52/1000
 data['min_salary'] = data.apply(lambda x: round(x['min_salary']*to_annual_const) if (x['hourly'] == 1) else x.min_salary, axis =1)
 data['max_salary'] = data.apply(lambda x: round(x['max_salary']*to_annual_const) if (x['hourly'] == 1) else x.max_salary, axis =1)
 
-#!!output to csv !!
+# Output to csv
+df_out = df.drop(['Unnamed: 0'], axis =1)
+df_out.to_csv('../datasets/salary_data_cleaned.csv', index = False)
