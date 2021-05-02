@@ -122,5 +122,5 @@ data['min_salary'] = data.apply(lambda x: round(x['min_salary']*to_annual_const)
 data['max_salary'] = data.apply(lambda x: round(x['max_salary']*to_annual_const) if (x['hourly'] == 1) else x.max_salary, axis =1)
 
 # Output to csv
-df_out = df.drop(['Unnamed: 0'], axis =1)
+df_out = data.drop(['Unnamed: 0'], axis =1)
 df_out.to_csv('../datasets/salary_data_cleaned.csv', index = False)
