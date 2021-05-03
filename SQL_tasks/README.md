@@ -1,13 +1,13 @@
 # Departaments_employee
 ![intro](structure_of_db.jpg)<br>
-В таблице DEPARTMENT содержаться все идентификаторы отделов некой организации.
-В таблице EMPLOYEE содержаться идентификаторы сотрудников, их принадлежность к отделам, их руководители и зарплата.
+There're all IDs departments of a certain company in table DEPARTMENTS.
+There're all IDs employees, thier departments, wages and leaders.
 
-Требуется:
-1.	Найти сотрудников, у которых зарплата больше 50 000 рублей
-2.	Найти отдел, в котором нет ни одного сотрудника
-3.	Вывести название отдела, имена сотрудников отдела и имена их руководителей. Требуется вывести только отделы, в которых есть хотя бы один сотрудник.
-4.	Вывести отдел и среднюю зарплату в этом отделе. Если в отделе нет сотрудников, то вывести 0
-5.	Найти отделы, в которых средняя зарплата больше 50 000 рублей
-6.	Вывести название отдела и имя руководителя в этом отделе, если зарплата руководителя отдела меньше, чем максимальная зарплата в этом отделе
-7.	Найти тех сотрудников, у которых руководитель работает не в их отделе
+Tasks:
+1. Find employees with wage more than 50 000 rubles 
+2. Find departments which haven't employees
+3. Display department, names of employees and their leaders, if departments have employees
+4. Display department and average wage of it. If departments haven't employees, then display 0
+5. Find departments which have average wage more than 50 000 rubles
+6. Display department and his leaders if wage of a leader less than max wage in this department
+7. Find employees with leader who work in the different department 
