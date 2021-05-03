@@ -3,7 +3,7 @@
 There're all IDs departments of a certain company in table DEPARTMENTS.
 There're all IDs employees, thier departments, wages and leaders.
 
-Tasks:
+**Tasks**:
 1. Find employees with wage more than 50 000 rubles 
 2. Find departments which haven't employees
 3. Display department, names of employees and their leaders, if departments have employees
